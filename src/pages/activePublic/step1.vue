@@ -10,10 +10,6 @@
           <el-radio :label="6">清仓活动</el-radio>
           <el-radio :label="9">限时活动</el-radio>
         </el-radio-group>
-
-        <!-- <el-input class="input-tag" v-if="ruleForm.inputVisible" v-model="ruleForm.inputValue" ref="saveTagInput" size="small" @keyup.enter.native="handleInputConfirm" @blur="handleInputConfirm"></el-input>
-        <el-button v-else size="small" @click="showInput"> 添加活动</el-button> -->
-
       </el-form-item>
 
       <el-form-item label="活动标签" required>
@@ -119,25 +115,6 @@ export default {
     };
   },
   methods: {
-    closeTag: function(tag) {
-      this.ruleForm.tags.splice(this.ruleForm.tags.indexOf(tag), 1);
-    },
-
-    showInput() {
-      this.ruleForm.inputVisible = true;
-      this.$nextTick(_ => {
-        this.$refs.saveTagInput.$refs.input.focus();
-      });
-    },
-
-    handleInputConfirm() {
-      let inputValue = this.ruleForm.inputValue;
-      if (inputValue) {
-        this.ruleForm.tags.push(inputValue);
-      }
-      this.ruleForm.inputVisible = false;
-      this.ruleForm.inputValue = "";
-    },
     preView: function() {
       console.log("预览");
     },
