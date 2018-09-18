@@ -52,7 +52,7 @@ body {
   .main {
     margin: 0 auto;
     background: #fff;
-    margin: 30px 70px;
+    // margin: 30px 70px;
     min-height: 800px;
     .main-left {
       background-color: #fcfcfc;

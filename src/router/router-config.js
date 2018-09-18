@@ -5,7 +5,7 @@ import step3 from '@/pages/activePublic/step3'
 import step4 from '@/pages/activePublic/step4'
 
 const routes = [{
-  path: '/',
+  path: '/activePublic',
   name: 'activePublic',
   component: activePublic,
   children: [{
