@@ -129,6 +129,9 @@ export default {
         placeValue: "",
         dialogImageUrl: "", //图片地址
         dialogVisible: false // 初始化对话框
+<<<<<<< HEAD
+>>>>>>> dc4e4b08f9176c03415ac482dee51ca03ffbd75b
+=======
 >>>>>>> dc4e4b08f9176c03415ac482dee51ca03ffbd75b
       },
       rules: {
@@ -153,10 +156,13 @@ export default {
   },
   methods: {
 <<<<<<< HEAD
+<<<<<<< HEAD
     closeTag(tag) {
       this.ruleForm.activeTags.splice(this.ruleForm.activeTags.indexOf(tag), 1);
     },
     // 图片上传
+=======
+>>>>>>> dc4e4b08f9176c03415ac482dee51ca03ffbd75b
 =======
 >>>>>>> dc4e4b08f9176c03415ac482dee51ca03ffbd75b
     handleRemove(file, fileList) {
