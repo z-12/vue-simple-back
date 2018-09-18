@@ -49,7 +49,7 @@
             </el-form-item>
           </el-col>
         </el-row>
-      </el-form-item>
+      </el-form-item> 
 
       <el-form-item label="活动地点" required>
         <el-select v-model="ruleForm.placeValue" placeholder="请选择">
@@ -112,7 +112,6 @@ export default {
         options: [
           {
             value: "选项1",
-<<<<<<< HEAD
             label: "上海"
           }
         ],
@@ -121,18 +120,10 @@ export default {
         dialogVisible: false, // 初始化对话框
         dialogFormVisible: false, //添加标签对话框
         addTag: "",
-        activeTags: [{ name: "111" }, { name: "222" }, { name: "333" }]
-=======
-            label: "黄金糕"
-          }
-        ],
+        activeTags: [{ name: "111" }, { name: "222" }, { name: "333" }],
         placeValue: "",
         dialogImageUrl: "", //图片地址
         dialogVisible: false // 初始化对话框
-<<<<<<< HEAD
->>>>>>> dc4e4b08f9176c03415ac482dee51ca03ffbd75b
-=======
->>>>>>> dc4e4b08f9176c03415ac482dee51ca03ffbd75b
       },
       rules: {
         name: [
@@ -155,16 +146,10 @@ export default {
     };
   },
   methods: {
-<<<<<<< HEAD
-<<<<<<< HEAD
     closeTag(tag) {
       this.ruleForm.activeTags.splice(this.ruleForm.activeTags.indexOf(tag), 1);
     },
     // 图片上传
-=======
->>>>>>> dc4e4b08f9176c03415ac482dee51ca03ffbd75b
-=======
->>>>>>> dc4e4b08f9176c03415ac482dee51ca03ffbd75b
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
