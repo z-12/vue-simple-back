@@ -32,7 +32,7 @@ export default {
 <style lang="scss" scoped>
 .left-nav {
   min-height: 800px;
-  background-color: #fcfcfc;
+  background-color: transparent;
   .el-menu {
     border: none;
   }
