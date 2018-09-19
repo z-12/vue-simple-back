@@ -8,6 +8,13 @@
     </el-steps>
 
     <router-view></router-view>
+
+    <div class="btn-group">
+      <el-button>预览</el-button>
+      <el-button>上一步</el-button>
+      <el-button type="primary">下一步</el-button>
+      <el-button type="primary">发布</el-button>
+    </div>
   </div>
 </template>
 <script>

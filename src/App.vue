@@ -11,11 +11,9 @@
           </div>
         </el-col>
         <el-col :span="20">
-
           <div class="main-right">
             <router-view></router-view>
           </div>
-
         </el-col>
       </el-row>
     </section>
