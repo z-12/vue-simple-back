@@ -4,11 +4,14 @@ import step2 from '@/pages/activePublic/step2'
 import step3 from '@/pages/activePublic/step3'
 import step4 from '@/pages/activePublic/step4'
 
+import activeManage from '@/pages/activeManage/index'
+
 const routes = [{
   path: '/activePublic',
   name: 'activePublic',
   component: activePublic,
-  children: [{
+  children: [
+    {
       path: '',
       component: step1
     },
@@ -23,7 +26,14 @@ const routes = [{
     {
       path: 'step3',
       component: step3
+    }, {
+      path: 'step4',
+      component: step4
     }
   ]
+}, {
+  path: '/activeManage',
+  name: 'activeManage',
+  component: activeManage
 }]
 export default routes;
