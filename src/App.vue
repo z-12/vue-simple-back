@@ -1,9 +1,14 @@
 <template>
   <div id="app">
     <header>
-      <head-nav></head-nav>
+      <el-row>
+        <el-col :span="24">
+          <head-nav class="header-bar"></head-nav>
+        </el-col>
+      </el-row>
     </header>
-    <section class="main">
+
+    <main>
       <el-row>
         <el-col :span="4">
           <div class="main-left">
@@ -16,7 +21,8 @@
           </div>
         </el-col>
       </el-row>
-    </section>
+    </main>
+
   </div>
 </template>
 
@@ -46,13 +52,26 @@ body {
   height: 100%;
   margin: 0 auto;
   background-color: #eff2f7;
-  .main {
-    margin: 0 auto;
-    background: #fff;
-    margin: 30px 70px;
+  header {
+    width: 100%;
+    min-width: 1200px;
+    transition: all 0.5s ease;
+    border-top: solid 4px #3091f2;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
+    .header-bar {
+      padding-left: 300px;
+    }
+  }
+
+  main {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     min-height: 800px;
+    border: solid 40px #e9ecf1;
+    background-color: #fcfcfc;
     .main-left {
-      background-color: #fcfcfc;
+   
     }
     .main-right {
       padding: 30px 100px;
