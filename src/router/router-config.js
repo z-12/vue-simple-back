@@ -23,10 +23,6 @@ const routes = [{
     {
       path: 'step3',
       component: step3
-    },
-    {
-      path: 'step4',
-      component: step4
     }
   ]
 }]
