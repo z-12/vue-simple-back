@@ -9,18 +9,12 @@
     </header>
 
     <main>
-      <el-row>
-        <el-col :span="4">
-          <div class="main-left">
-            <left-nav></left-nav>
-          </div>
-        </el-col>
-        <el-col :span="20">
-          <div class="main-right">
-            <router-view></router-view>
-          </div>
-        </el-col>
-      </el-row>
+      <div class="main-left">
+        <left-nav></left-nav>
+      </div>
+      <div class="main-right">
+        <router-view></router-view>
+      </div>
     </main>
 
   </div>
@@ -71,10 +65,12 @@ body {
     border: solid 40px #e9ecf1;
     background-color: #fcfcfc;
     .main-left {
-   
+      width: 200px;
     }
     .main-right {
-      padding: 30px 100px;
+      padding: 50px 70px;
+      flex: 1;
+      background-color: #fff;
     }
   }
 }
