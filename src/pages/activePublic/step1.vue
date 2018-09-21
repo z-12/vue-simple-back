@@ -312,17 +312,7 @@ export default {
       });
     }
   },
-  watch: {
-    // 监控
-    ruleForm: {
-      handler: function(val, oldVal) {
-        store.commit("setRuleForm", this.ruleForm);
-        this.tagsValid = !this.ruleForm.tags.length ? "" : false;
-        this.ruleFormChange = true;
-      },
-      deep: true // 深度监控，可以观察到ruleForm内任意属性的变化
-    }
-  }
+  watch: {}
 };
 </script>
 <style lang="scss" scoped>
