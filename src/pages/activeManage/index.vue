@@ -29,48 +29,40 @@
     <el-card>
       <div slot="header" class="card-header">
         <h3>活动列表</h3>
-        <el-row>
-          <el-col :span="3">
-            <div style="line-height:38px">已选择0个活动</div>
+        <el-row type="flex">
+          <el-col :span="5">
+            已选择{{activeNum}}个活动
           </el-col>
-          <el-col :span="3">
-            <el-select v-model="activeSelect">
-              <el-option v-for="item in activeSelects" :label="item.name" :key="item.name" :value="item.value"></el-option>
+          <el-col :span="5">
+            <el-select v-model="currentType" placeholder="请选择活动分类">
+              <el-option v-for="item in activeSelects" :key="item" :label="item" :value="item"></el-option>
             </el-select>
           </el-col>
-          <el-col :span="6" :offset="1">
-            <el-button @click="removeSelect([activeInfo[0]])">删除</el-button>
-            <el-button>置顶</el-button>
-            <el-button>复制</el-button>
+          <el-col :span="13">
+            <el-button @click="removeSelect" type="danger">删除</el-button>
+            <el-button type="info">置顶</el-button>
+            <el-button type="info">复制</el-button>
           </el-col>
         </el-row>
       </div>
 
-      <el-table :data="activeInfo" style="width: 100%" ref="infoTable">
-        <el-table-column type="selection" width="55">
-        </el-table-column>
-        <el-table-column fixed prop="date" label="日期" width="150">
-        </el-table-column>
-        <el-table-column prop="name" label="姓名" width="120">
-        </el-table-column>
-        <el-table-column prop="province" label="省份" width="120">
-        </el-table-column>
-        <el-table-column prop="city" label="市区" width="150">
-        </el-table-column>
-        <el-table-column prop="address" label="地址" width="350">
-        </el-table-column>
+      <el-table :data="filteredTableData" style="width: 100%">
+        <el-table-column type="selection" width="55"></el-table-column>
+        <el-table-column fixed prop="date" label="活动日期" width="150"></el-table-column>
+        <el-table-column prop="name" label="活动名称"></el-table-column>
+        <el-table-column prop="type" label="活动分类" width="200"></el-table-column>
+        <el-table-column prop="address" label="活动地点"></el-table-column>
+        <el-table-column prop="peopleNum" label="报名人数"></el-table-column>
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
-            <el-button type="text" size="small">
-              查看详情
-            </el-button>
+            <el-button type="text" size="small">查看详情</el-button>
           </template>
         </el-table-column>
       </el-table>
 
-      <div class="pagination">
-        <el-pagination layout="prev,pager,next,->" :total="200" background></el-pagination>
-      </div>
+      <el-row type="flex" justify="end" class="pagination">
+        <el-pagination layout="prev,pager,next" :total="200" background></el-pagination>
+      </el-row>
 
     </el-card>
   </div>
@@ -79,51 +71,62 @@
 export default {
   data() {
     return {
+      activeNum: 0, //活动数量
       activeSelect: "",
-      activeSelects: [
-        {
-          value: 1,
-          name: "测试活动"
-        },
-        {
-          value: 2,
-          name: "免费活动"
-        },
-        {
-          value: 3,
-          name: "收费活动"
-        }
-      ],
+      currentType: "全部",
+      activeSelects: ["全部", "电子竞技", "收费活动"],
       activeInfo: [
         {
+          id: "01",
+          type: "电子竞技",
           date: "2016-05-03",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄"
+          name: "LOL",
+          address: "上海市普陀区金沙江路 1518 弄",
+          peopleNum: "10"
         },
         {
+          id: "02",
+          type: "电子竞技",
           date: "2016-05-02",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄"
+          name: "绝地求生",
+          address: "上海市普陀区金沙江路 1518 弄",
+          peopleNum: "10"
         },
         {
+          id: "03",
+          type: "电子竞技",
           date: "2016-05-04",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄"
+          name: "穿越火线",
+          address: "上海市普陀区金沙江路 1518 弄",
+          peopleNum: "10"
         }
-      ]
+      ],
+      infoBackup: []
     };
   },
+  computed: {
+    filteredTableData: function() {
+      let type = this.currentType;
+      return this.activeInfo.filter(data => {
+        if (type == "全部" || type == "") {
+          return true;
+        } else {
+          return data.type == type;
+        }
+      });
+    }
+  },
   methods: {
-    removeSelect: function(row,rows) {
-
-      
-
+    removeSelect: function() {
+      let infoData = this.activeInfo;
+      this.infoBackup.forEach(id => {
+        infoData.forEach(data => {
+          if (id == data.id) {
+            infoData.splice(infoData.indexOf(data), 1);
+          }
+        });
+      });
+      this.infoBackup = [];
     }
   }
 };
@@ -175,7 +178,6 @@ export default {
     }
   }
   .pagination {
-    float: right;
     padding: 20px 0;
   }
 }
