@@ -4,23 +4,23 @@
       <el-row :gutter="20">
         <el-col :span="18">
           <div class="active-box">
-            <div class="flex-box">
-              3
+            <div class="flex-item">
+              {{totalActiveNum}}
               <p>活动总数</p>
             </div>
-            <div class="flex-box">
-              3
+            <div class="flex-item">
+              {{totalActiveNum}}
               <p>报名总数</p>
             </div>
-            <div class="flex-box">
-              3
+            <div class="flex-item">
+              {{auditNum}}
               <p>待审核 </p>
             </div>
           </div>
         </el-col>
         <el-col :span="5" :offset="1">
           <div class="view-vip">
-            3
+            {{totalActiveNum}}
             <p>查看会员</p>
           </div>
         </el-col>
@@ -46,7 +46,7 @@
         </el-row>
       </div>
 
-      <el-table :data="filteredTableData" style="width: 100%">
+      <el-table :data="filteredTableData" style="width: 100%" @cell-click="handleSelect" @selection-change="selectionChange">
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column fixed prop="date" label="活动日期" width="150"></el-table-column>
         <el-table-column prop="name" label="活动名称"></el-table-column>
@@ -71,6 +71,8 @@
 export default {
   data() {
     return {
+      auditNum: 8,
+      totalActiveNum: 15, //查看会员
       activeNum: 0, //活动数量
       activeSelect: "",
       currentType: "全部",
@@ -99,9 +101,17 @@ export default {
           name: "穿越火线",
           address: "上海市普陀区金沙江路 1518 弄",
           peopleNum: "10"
+        },
+        {
+          id: "04",
+          type: "收费活动",
+          date: "2016-05-05",
+          name: "阴阳师",
+          address: "上海市静安区汶水路1720号",
+          peopleNum: "10"
         }
       ],
-      infoBackup: []
+      selectItems: []
     };
   },
   computed: {
@@ -117,16 +127,34 @@ export default {
     }
   },
   methods: {
+    handleSelect: function(row, column, cell, event) {
+      if (column.label == "操作") {
+        this.$router.push("/activeManage/detail/page1");
+      } else if (column.type == "selection") {
+        row.$info = !row.$selected;
+      } else {
+        row.$selected = !row.$selected;
+        row.$info = row.$selected;
+      }
+    },
+    selectionChange: function(val) {
+      const arr = [];
+      val.forEach(item => {
+        arr.push(item.id);
+      });
+      this.selectItems = arr;
+      this.activeNum = this.selectItems.length;
+    },
     removeSelect: function() {
       let infoData = this.activeInfo;
-      this.infoBackup.forEach(id => {
+      this.selectItems.forEach(id => {
         infoData.forEach(data => {
           if (id == data.id) {
             infoData.splice(infoData.indexOf(data), 1);
           }
         });
       });
-      this.infoBackup = [];
+      this.selectItems = [];
     }
   }
 };
@@ -141,7 +169,7 @@ export default {
       padding: 30px 0;
       display: flex;
       justify-content: space-around;
-      .flex-box {
+      .flex-item {
         width: 33.3333%;
         border-right: 1px solid #fff;
         padding: 20px 0;
@@ -156,7 +184,7 @@ export default {
           padding-top: 10px;
         }
       }
-      .flex-box:last-child {
+      .flex-item:last-child {
         border: none;
       }
     }
